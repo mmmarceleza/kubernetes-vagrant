@@ -1,3 +1,3 @@
-# Install Kubernetes using Vagrant
-
-![kubernetes-vagrant](.img/kubernetes-vagrant.svg)
+<p align="center">
+  <img src=".img/kubernetes-vagrant.svg" alt="kubernetes-vagrant"/>
+</p>
