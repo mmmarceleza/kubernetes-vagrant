@@ -1,2 +1,3 @@
-# kubernetes-vagrant
-Instructions to provision a Kubernetes cluster using Vagrant.
+# Install Kubernetes using Vagrant
+
+![kubernetes-vagrant](.img/kubernetes-vagrant.svg)
