@@ -38,30 +38,10 @@ containerd config default > /etc/containerd/config.toml
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
 systemctl restart containerd
 
-#echo "[TASK 5] Install CRIO runtime"
-#VERSION=1.24
-#OS=xUbuntu_22.04
-#
-#echo "deb [signed-by=/usr/share/keyrings/libcontainers-archive-keyring.gpg] https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-#echo "deb [signed-by=/usr/share/keyrings/libcontainers-crio-archive-keyring.gpg] https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
-#
-#mkdir -p /usr/share/keyrings
-#curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | gpg --dearmor -o /usr/share/keyrings/libcontainers-archive-keyring.gpg
-#curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/Release.key | gpg --dearmor -o /usr/share/keyrings/libcontainers-crio-archive-keyring.gpg
-#
-#apt update -qq >/dev/null 2>&1
-#apt install -qq -y cri-o cri-o-runc >/dev/null 2>&1
-#systemctl restart crio
-#systemctl enable crio >/dev/null 2>&1
-
 echo "[TASK 6] Add apt repo for kubernetes"
 apt install -qq -y apt-transport-https ca-certificates curl >/dev/null 2>&1
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' > /etc/apt/sources.list.d/kubernetes.list
-#apt install -qq -y apt-transport-https ca-certificates curl >/dev/null 2>&1
-#curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-#echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-#apt update -qq >/dev/null 2>&1
 
 echo "[TASK 7] Install Kubernetes components (kubeadm, kubelet and kubectl)"
 apt update -qq -y >/dev/null 2>&1
@@ -83,6 +63,6 @@ cat >>/etc/hosts<<EOF
 172.16.16.101   kworker1.example.com    kworker1
 172.16.16.102   kworker2.example.com    kworker2
 172.16.16.103   kworker3.example.com    kworker3
-172.16.16.104   kworker4.example.com    kworker4
-172.16.16.105   kworker5.example.com    kworker5
+# 172.16.16.104   kworker4.example.com    kworker4
+# 172.16.16.105   kworker5.example.com    kworker5
 EOF

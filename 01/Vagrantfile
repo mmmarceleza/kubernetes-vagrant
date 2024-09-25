@@ -1,6 +1,18 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+#--------------------------------------------------------------
+# Vagrant file to run a multi VMs along libvirt provider.
+#
+# Reference docs:
+# 1 - https://github.com/vagrant-libvirt/vagrant-libvirt
+# 2 - https://wiki.archlinux.org/title/Vagrant
+# 3 - https://wiki.archlinux.org/title/Libvirt
+# 4 - https://wiki.archlinux.org/title/KVM
+# 5 - https://wiki.archlinux.org/title/QEMU
+# 6 - https://roboxes.org
+#--------------------------------------------------------------
 
+#--------------------------------------------------------------
+#                           VARIABLES
+#--------------------------------------------------------------
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 VAGRANT_BOX         = "generic/ubuntu2204"
@@ -11,9 +23,11 @@ CPUS_MASTER_NODE    = 2
 CPUS_WORKER_NODE    = 1
 MEMORY_MASTER_NODE  = 2048
 MEMORY_WORKER_NODE  = 1024
-WORKER_NODES_COUNT  = 5
+WORKER_NODES_COUNT  = 3
 
-
+#--------------------------------------------------------------
+#                          CONFIGURATION
+#--------------------------------------------------------------
 Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", path: "bootstrap.sh"
